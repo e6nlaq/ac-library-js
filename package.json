@@ -25,6 +25,7 @@
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "format": "biome format --write ./lib",
+    "check":"biome check ./lib",
     "test": "vitest --run",
     "test:watch": "vitest --watch",
     "bench": "vitest bench",
