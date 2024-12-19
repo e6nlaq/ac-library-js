@@ -1,5 +1,6 @@
 lib/
 test/
+example/
 biome.json
 bun.lockb
 vitest.config.ts
