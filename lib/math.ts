@@ -34,7 +34,6 @@ export function pow_mod(x: ll, n: ll, m: number): bigint {
 export function inv_mod(x: ll, m: ll): bigint {
 	x = BigInt(x);
 	m = BigInt(m);
-	// ok(1n <= m);
 
 	if (m < 1n) {
 		throw new RangeError("m must be 1<=m");
@@ -62,8 +61,6 @@ export function crt(r: vll, m: vll): [bigint, bigint] {
 	let r0 = 0n;
 	let m0 = 1n;
 	for (let i = 0; i < n; i++) {
-		// ok(1n <= m[i]);
-
 		if (m[i] < 1n) {
 			throw new RangeError("m[i] must be 1<=m[i]");
 		}
