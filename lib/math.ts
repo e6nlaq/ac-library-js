@@ -1,4 +1,3 @@
-import { ok } from "node:assert";
 import {
 	Barrett,
 	floor_sum_unsigned,
@@ -11,7 +10,14 @@ export function pow_mod(x: ll, n: ll, m: number): bigint {
 	x = BigInt(x);
 	n = BigInt(n);
 
-	ok(0n <= n && 1 <= m);
+	if (n < 0n) {
+		throw new RangeError("n must be 0<=n");
+	}
+
+	if (m < 1n) {
+		throw new RangeError("m must be 1<=m");
+	}
+
 	if (m === 1) return 0n;
 	const bt = new Barrett(m);
 	let r = 1;
@@ -28,9 +34,17 @@ export function pow_mod(x: ll, n: ll, m: number): bigint {
 export function inv_mod(x: ll, m: ll): bigint {
 	x = BigInt(x);
 	m = BigInt(m);
-	ok(1n <= m);
+
+	if (m < 1n) {
+		throw new RangeError("m must be 1<=m");
+	}
+
 	const z = inv_gcd(x, m);
-	ok(z[0] === 1n);
+
+	if (z[0] !== 1n) {
+		throw new RangeError("gcd(x,m) must be 1");
+	}
+
 	return z[1];
 }
 
@@ -38,13 +52,19 @@ export function crt(r: vll, m: vll): [bigint, bigint] {
 	if (Array.isArray(r)) r = new BigInt64Array(r);
 	if (Array.isArray(m)) m = new BigInt64Array(m);
 
-	ok(r.length === m.length);
+	if (r.length !== m.length) {
+		throw new RangeError("|r| and |m| must be the same");
+	}
+
 	const n = Number(r.length);
 
 	let r0 = 0n;
 	let m0 = 1n;
 	for (let i = 0; i < n; i++) {
-		ok(1n <= m[i]);
+		if (m[i] < 1n) {
+			throw new RangeError("m[i] must be 1<=m[i]");
+		}
+
 		let r1 = safe_mod(r[i], m[i]);
 		let m1 = m[i];
 		if (m0 < m1) {
@@ -77,8 +97,14 @@ export function floor_sum(n: ll, m: ll, a: ll, b: ll): bigint {
 	a = BigInt(a);
 	b = BigInt(b);
 
-	ok(0n <= n && n < 1n << 32n);
-	ok(0n <= m && m < 1n << 32n);
+	if (!(0n <= n && n < 1n << 32n)) {
+		throw new RangeError("n must be 0<=n<2^32");
+	}
+
+	if (!(0n <= m && m < 1n << 32n)) {
+		throw new RangeError("m must be 0<=m<2^32");
+	}
+
 	let ans = 0n;
 	if (a < 0n) {
 		const a2 = safe_mod(a, m);
