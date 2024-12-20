@@ -1,3 +1,5 @@
+// Verified: https://atcoder.jp/contests/practice2/submissions/60894090
+
 import { readFileSync } from "node:fs";
 import { Segtree } from "ac-library-js/segtree";
 
