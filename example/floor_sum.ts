@@ -1,3 +1,5 @@
+// Verified: https://atcoder.jp/contests/practice2/submissions/60893797
+
 import { readFileSync } from "node:fs";
 import { floor_sum } from "ac-library-js/math";
 

@@ -1,3 +1,5 @@
+// Verified: https://atcoder.jp/contests/practice2/submissions/60897646
+
 import { readFileSync } from "node:fs";
 import { TwoSat } from "ac-library-js/twosat";
 
