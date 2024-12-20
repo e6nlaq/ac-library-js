@@ -2,7 +2,7 @@ import { CSR } from "./internal_csr";
 
 type Edge = { to: number };
 
-export class SCCGraph {
+export class InternalSCCGraph {
 	private _n: number;
 	private edges: [number, Edge][];
 
