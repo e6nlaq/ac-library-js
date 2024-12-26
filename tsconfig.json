@@ -6,7 +6,6 @@
     "module": "CommonJS",
     "allowJs": true,
 
-    "types": ["vitest/globals"],
     "paths": { "@/*": ["./lib/*"] },
 
     // Best practices

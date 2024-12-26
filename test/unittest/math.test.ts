@@ -1,3 +1,4 @@
+import { describe, expect, test } from "bun:test";
 import { safe_mod } from "@/internal_math";
 import { crt, floor_sum, inv_mod, pow_mod } from "@/math";
 import { ok } from "node:assert";
