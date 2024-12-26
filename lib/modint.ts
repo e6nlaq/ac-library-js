@@ -202,7 +202,7 @@ export class ModInt<M extends number> {
 	}
 
 	/**
-	 * =
+	 * `=`
 	 */
 	set(v: Val<M>) {
 		if (is_modint<M>(v)) {
