@@ -1,4 +1,3 @@
-import { w } from "@faker-js/faker/dist/airline-BnpeTvY9";
 import { inv_gcd, is_prime_constexpr } from "./internal_math";
 import type { ll } from "./internal_types";
 
