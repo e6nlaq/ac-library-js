@@ -1,18 +1,17 @@
 import { bit_ceil, countr_zero } from "./internal_bit";
-import type { CustomArrayOption, WritableArray } from "./internal_types";
 
 export type OperatorType<S> = (a: S, b: S) => S;
 export type ElementType<S> = () => S;
 export type SearchFunction<S> = (x: S) => boolean;
 
-export class Segtree<S, V extends WritableArray<S> = Array<S>> {
+export class Segtree<S> {
 	private op: (a: S, b: S) => S;
 	private e: () => S;
 
 	private _n: number;
 	private size: number;
 	private log: number;
-	private d: WritableArray<S>;
+	private d: Array<S>;
 
 	private update(k: number): void {
 		this.d[k] = this.op(this.d[2 * k], this.d[2 * k + 1]);
@@ -24,21 +23,13 @@ export class Segtree<S, V extends WritableArray<S> = Array<S>> {
 		}
 	}
 
-	constructor(
-		op: OperatorType<S>,
-		e: ElementType<S>,
-		x: number | S[] = 0,
-		option: CustomArrayOption<S, V> = {
-			arr: Array,
-		}
-	) {
+	constructor(op: OperatorType<S>, e: ElementType<S>, x: number | S[] = 0) {
 		this.op = op;
 		this.e = e;
 
-		let v: WritableArray<S>;
+		let v: Array<S>;
 		if (typeof x === "number") {
-			// v = new Array<S>(x).fill(this.e());
-			v = new option.arr(x);
+			v = new Array<S>(x).fill(this.e());
 			for (let i = 0; i < x; i++) v[i] = this.e();
 		} else {
 			v = x;
@@ -47,7 +38,7 @@ export class Segtree<S, V extends WritableArray<S> = Array<S>> {
 		this._n = v.length;
 		this.size = bit_ceil(this._n);
 		this.log = countr_zero(this.size);
-		this.d = new option.arr(2 * this.size);
+		this.d = new Array(2 * this.size);
 		for (let i = 0; i < this.d.length; i++) this.d[i] = this.e();
 
 		for (let i = 0; i < this._n; i++) {
