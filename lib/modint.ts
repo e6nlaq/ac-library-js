@@ -10,7 +10,7 @@ export type Val<M extends number> = number | bigint | ModInt<M>;
 
 export class ModInt<M extends number> {
 	private m: M;
-	private _v: number;
+	private _v = 0;
 	private umod() {
 		return this.m;
 	}
@@ -21,14 +21,7 @@ export class ModInt<M extends number> {
 	constructor(m: M, v: Val<M> = 0) {
 		this.m = m;
 		this.prime = is_prime_constexpr(m);
-		if (is_modint<M>(v)) {
-			this._v = v._v;
-		} else {
-			v = BigInt(v);
-			let x = v % BigInt(this.umod());
-			if (x < 0n) x += BigInt(this.umod());
-			this._v = Number(x);
-		}
+		this.set(v);
 	}
 
 	mod(): number {
@@ -206,6 +199,20 @@ export class ModInt<M extends number> {
 	nq(r: Val<M>) {
 		const rhs = this.mint(r);
 		return this._v !== rhs._v;
+	}
+
+	/**
+	 * =
+	 */
+	set(v: Val<M>) {
+		if (is_modint<M>(v)) {
+			this._v = v._v;
+		} else {
+			v = BigInt(v);
+			let x = v % BigInt(this.umod());
+			if (x < 0n) x += BigInt(this.umod());
+			this._v = Number(x);
+		}
 	}
 }
 
