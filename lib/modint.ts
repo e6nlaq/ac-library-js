@@ -6,7 +6,7 @@ export function is_modint<M extends number>(x: unknown): x is ModInt<M> {
 	return x instanceof ModInt;
 }
 
-export type Val<M extends number> = number | bigint | ModInt<M>;
+export type Val<M extends number> = number | bigint | boolean | ModInt<M>;
 
 export class ModInt<M extends number> {
 	private m: M;
