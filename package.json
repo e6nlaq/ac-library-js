@@ -17,8 +17,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@faker-js/faker": "^9.3.0",
-    "@types/bun": "^1.1.14",
-    "vitest": "^2.1.6"
+    "@types/bun": "^1.1.14"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
@@ -27,9 +26,6 @@
     "build": "tsc -p ./tsconfig.build.json",
     "format": "biome format --write ./lib",
     "check": "biome check ./lib",
-    "test": "vitest --run",
-    "test:watch": "vitest --watch",
-    "bench": "vitest bench",
     "prepublishOnly": "bun run format && bun run build && bun test"
   }
 }

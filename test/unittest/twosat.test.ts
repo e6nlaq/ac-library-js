@@ -1,3 +1,4 @@
+import { describe, expect, test } from "bun:test";
 import { TwoSat } from "@/twosat";
 import { randbool, randint } from "../utils/random";
 

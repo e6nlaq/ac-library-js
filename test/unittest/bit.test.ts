@@ -1,3 +1,4 @@
+import { describe, expect, test } from "bun:test";
 import { bit_ceil, countr_zero } from "@/internal_bit";
 import { max_uint } from "../utils/limit";
 
