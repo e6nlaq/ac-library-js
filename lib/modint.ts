@@ -209,6 +209,9 @@ export class ModInt<M extends number> {
 	}
 }
 
-export const modint998244353 = (x: Val<998244353>) => new ModInt(998244353, x);
-export const modint1000000007 = (x: Val<1000000007>) =>
-	new ModInt(1000000007, x);
+export function modint<M extends number>(m: M) {
+	return (x: Val<M> = 0) => new ModInt(m, x);
+}
+
+export const modint1000000007 = modint(1000000007);
+export const modint998244353 = modint(998244353);
