@@ -1,27 +1,27 @@
 {
-  "compilerOptions": {
-    // Enable latest features
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "CommonJS",
-    "allowJs": true,
+	"compilerOptions": {
+		// Enable latest features
+		"lib": ["ESNext"],
+		"target": "ESNext",
+		"module": "CommonJS",
+		"allowJs": true,
 
-    "paths": { "@/*": ["./lib/*"] },
+		"paths": { "@/*": ["./lib/*"] },
 
-    // Best practices
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
+		// Best practices
+		"strict": true,
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
 
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false,
+		// Some stricter flags (disabled by default)
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noPropertyAccessFromIndexSignature": false,
 
-    "declaration": true,
+		"declaration": true,
 
-    "outDir": "./dist/"
-  },
+		"outDir": "./dist/"
+	},
 
-  "include": ["./lib/**/*.ts", "./test/**/*"]
+	"include": ["./lib/**/*.ts", "./test/**/*"]
 }

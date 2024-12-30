@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { ok } from "node:assert";
 import { safe_mod } from "@/internal_math";
 import { crt, floor_sum, inv_mod, pow_mod } from "@/math";
-import { ok } from "node:assert";
 import { max_ll, min_ll } from "../utils/limit";
 
 function gcd(a: bigint, b: bigint): bigint {

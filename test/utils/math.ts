@@ -1,5 +1,5 @@
-import { pow_mod_constexpr } from "@/internal_math";
 import { ok } from "node:assert";
+import { pow_mod_constexpr } from "@/internal_math";
 
 export function factors(m: number): number[] {
 	const result: number[] = [];

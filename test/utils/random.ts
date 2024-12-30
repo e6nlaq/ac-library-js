@@ -1,6 +1,6 @@
+import { ok } from "node:assert";
 import { faker } from "@faker-js/faker";
 import { E } from "@faker-js/faker/dist/airline-BnpeTvY9";
-import { ok } from "node:assert";
 
 export function randint(a: number, b: number): number;
 export function randint(a: bigint, b: bigint): bigint;
