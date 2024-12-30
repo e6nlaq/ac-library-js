@@ -1,31 +1,32 @@
-import { type ModIntFunction, ModInt } from "./modint";
+import { ModInt, type ModIntFunction } from "./modint";
 
-type NumConstructor<M extends number> =
-	| NumberConstructor
-	| BigIntConstructor
-	| ModIntFunction<M>;
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+type Constructor<T> = (arg: any) => T;
 
-export class FenwickTree<M extends number> {
+export class FenwickTree<
+	T extends number | bigint | ModInt<M>,
+	M extends number,
+> {
 	private _n: number;
-	private data: ReturnType<NumConstructor<M>>[];
-	private t: NumConstructor<M>;
+	private data: T[];
+	private t: T extends ModInt<M> ? ModIntFunction<M> : Constructor<T>;
 
-	private _sum(r: number): ReturnType<NumConstructor<M>> {
-		if (this.t === Number) {
+	private _sum(r: number): T {
+		if (typeof this.t(0) === "number") {
 			let s = 0;
 			while (r > 0) {
 				s += this.data[r - 1] as number;
 				r -= r & -r;
 			}
-			return s;
+			return s as T;
 		}
-		if (this.t === BigInt) {
+		if (typeof this.t(0) === "bigint") {
 			let s = 0n;
 			while (r > 0) {
 				s += this.data[r - 1] as bigint;
 				r -= r & -r;
 			}
-			return s;
+			return s as T;
 		}
 		if (this.t(0) instanceof ModInt) {
 			const s = this.t(0) as ModInt<M>;
@@ -33,19 +34,19 @@ export class FenwickTree<M extends number> {
 				s.adda(this.data[r - 1] as ModInt<M>);
 				r -= r & -r;
 			}
-			return s;
+			return s as T;
 		}
 
 		throw new Error();
 	}
 
-	constructor(t: NumConstructor<M>, n = 0) {
+	constructor(t: typeof this.t, n = 0) {
 		this._n = n;
 		this.t = t;
-		this.data = new Array<ReturnType<NumConstructor<M>>>(n).fill(t(0));
+		this.data = new Array<T>(n).fill(t(0) as T);
 	}
 
-	add(p: number, x: ReturnType<NumConstructor<M>>): void {
+	add(p: number, x: T): void {
 		if (!(0 <= p && p < this._n)) {
 			throw new RangeError("Out of range");
 		}
@@ -63,17 +64,17 @@ export class FenwickTree<M extends number> {
 		}
 	}
 
-	sum(l: number, r: number): ReturnType<NumConstructor<M>> {
+	sum(l: number, r: number): T {
 		if (!(0 <= l && l <= r && r <= this._n)) {
 			throw new RangeError("Out of range");
 		}
 
-		if (this.t === Number) {
-			return (this._sum(r) as number) - (this._sum(l) as number);
+		if (typeof this.t(0) === "number") {
+			return ((this._sum(r) as number) - (this._sum(l) as number)) as T;
 		}
-		if (this.t === BigInt) {
-			return (this._sum(r) as bigint) - (this._sum(l) as bigint);
+		if (typeof this.t(0) === "bigint") {
+			return ((this._sum(r) as bigint) - (this._sum(l) as bigint)) as T;
 		}
-		return (this._sum(r) as ModInt<M>).sub(this._sum(l));
+		return (this._sum(r) as ModInt<M>).sub(this._sum(l)) as T;
 	}
 }
