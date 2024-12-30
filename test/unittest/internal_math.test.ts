@@ -6,8 +6,8 @@ import {
 	primitive_root_constexpr,
 	safe_mod,
 } from "@/internal_math";
+import { max_ll, min_ll } from "../utils/limit";
 import { is_primitive_root } from "../utils/math";
-import { min_ll, max_ll } from "../utils/limit";
 
 function gcd(a: bigint, b: bigint): bigint {
 	if (a < 0n || b < 0n) throw new RangeError();
