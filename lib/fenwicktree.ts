@@ -1,7 +1,7 @@
 import { ModInt, type ModIntFunction } from "./modint";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-type Constructor<T> = (arg: any) => T;
+export type Constructor<T> = (arg: any) => T;
 
 export class FenwickTree<
 	T extends number | bigint | ModInt<M>,
@@ -40,7 +40,10 @@ export class FenwickTree<
 		throw new Error();
 	}
 
-	constructor(t: typeof this.t, n = 0) {
+	constructor(
+		t: T extends ModInt<M> ? ModIntFunction<M> : Constructor<T>,
+		n = 0
+	) {
 		this._n = n;
 		this.t = t;
 		this.data = new Array<T>(n).fill(0 as T).map((_) => t(0) as T);
