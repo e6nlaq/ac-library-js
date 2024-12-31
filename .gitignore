@@ -175,3 +175,4 @@ dist
 .DS_Store
 
 index.ts
+script/expander.js

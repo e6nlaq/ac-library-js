@@ -6,3 +6,4 @@ bun.lockb
 vitest.config.ts
 .gitignore
 index.ts
+script/expander.ts

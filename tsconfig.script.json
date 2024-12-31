@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		// Enable latest features
+		"lib": ["ESNext"],
+		"target": "ESNext",
+		"module": "CommonJS",
+		"allowJs": true,
+
+		"paths": { "@/*": ["./lib/*"] },
+
+		// Best practices
+		"strict": true,
+		"skipLibCheck": true,
+		"noFallthroughCasesInSwitch": true,
+
+		// Some stricter flags (disabled by default)
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"noPropertyAccessFromIndexSignature": false,
+
+		"resolveJsonModule": true,
+		"esModuleInterop": true
+	},
+
+	"include": ["./script/**/*.ts"]
+}
