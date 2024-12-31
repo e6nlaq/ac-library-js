@@ -1,7 +1,7 @@
 {
 	"name": "ac-library-js",
 	"description": "AC Library for JavaScript",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/e6nlaq/ac-library-js"
