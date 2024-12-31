@@ -43,7 +43,7 @@ export class FenwickTree<
 	constructor(t: typeof this.t, n = 0) {
 		this._n = n;
 		this.t = t;
-		this.data = new Array<T>(n).fill(t(0) as T);
+		this.data = new Array<T>(n).fill(0 as T).map((_) => t(0) as T);
 	}
 
 	add(p: number, x: T): void {
