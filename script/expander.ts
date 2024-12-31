@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { statSync } from "node:fs";
 import * as esbuild from "esbuild";
 import { exit } from "node:process";
