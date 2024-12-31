@@ -5,7 +5,7 @@ type Constructor<T> = (arg: any) => T;
 
 export class FenwickTree<
 	T extends number | bigint | ModInt<M>,
-	M extends number,
+	M extends number = number,
 > {
 	private _n: number;
 	private data: T[];
