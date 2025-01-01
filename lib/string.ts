@@ -232,3 +232,71 @@ export function suffix_array<T>(
 	}
 	return internal.sa_is(s2, now);
 }
+
+export function lcp_array(s: string, sa: vi): Int32Array; //(1)
+export function lcp_array<T>(s: T[], sa: vi): Int32Array; //(2)
+
+export function lcp_array<T>(s: string | T[], sa: vi): Int32Array {
+	if (!isInt32Array(sa)) {
+		sa = new Int32Array(sa);
+	}
+
+	if (typeof s === "string") {
+		const n = s.length;
+		const s2 = new Array<number>(n);
+		for (let i = 0; i < n; i++) {
+			s2[i] = s.charCodeAt(i);
+		}
+		return lcp_array(s2, sa);
+	}
+
+	const n = s.length;
+	if (n < 1) {
+		throw new RangeError("n must be 1<=n");
+	}
+	const rnk = new Int32Array(n);
+	for (let i = 0; i < n; i++) {
+		rnk[sa[i]] = i;
+	}
+	const lcp = new Int32Array(n - 1);
+	let h = 0;
+	for (let i = 0; i < n; i++) {
+		if (h > 0) h--;
+		if (rnk[i] === 0) continue;
+		const j = sa[rnk[i] - 1];
+		for (; j + h < n && i + h < n; h++) {
+			if (s[j + h] !== s[i + h]) break;
+		}
+		lcp[rnk[i] - 1] = h;
+	}
+	return lcp;
+}
+
+export function z_algorithm(s: string): Int32Array; //(1)
+export function z_algorithm<T>(s: T[]): Int32Array; //(2)
+
+export function z_algorithm<T>(s: string | T[]): Int32Array {
+	if (typeof s === "string") {
+		// (1)
+		const n = s.length;
+		const s2 = new Array<number>(n);
+		for (let i = 0; i < n; i++) {
+			s2[i] = s.charCodeAt(i);
+		}
+		return z_algorithm(s2);
+	}
+
+	// (2)
+	const n = s.length;
+	if (n === 0) return new Int32Array();
+	const z = new Int32Array(n);
+	z[0] = 0;
+	for (let i = 1, j = 0; i < n; i++) {
+		let k = z[i];
+		k = j + z[j] <= i ? 0 : Math.min(j + z[j] - i, z[i - j]);
+		while (i + k < n && s[k] === s[i + k]) k++;
+		if (j + z[j] < i + z[i]) j = i;
+	}
+	z[0] = n;
+	return z;
+}
