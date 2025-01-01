@@ -1,4 +1,5 @@
 import { isInt32Array } from "node:util/types";
+import type { vi } from "./internal_types";
 
 export namespace internal {
 	export function sa_naive(s: Int32Array): Int32Array {
@@ -178,13 +179,10 @@ export function suffix_array(s: string): Int32Array; // (1)
 export function suffix_array<T>(s: T[]): Int32Array; // (2)
 
 // (3)
-export function suffix_array(
-	s: Int32Array | number[],
-	upper: number
-): Int32Array;
+export function suffix_array(s: vi, upper: number): Int32Array;
 
 export function suffix_array<T>(
-	s: string | T[] | Int32Array | number[],
+	s: string | T[] | vi,
 	upper?: number
 ): Int32Array {
 	if (upper !== undefined) {
