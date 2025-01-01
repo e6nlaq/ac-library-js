@@ -110,7 +110,6 @@ export namespace internal {
 			}
 		};
 
-		// std::vector<int> lms_map(n + 1, -1);
 		const lms_map = new Int32Array(n + 1).fill(-1);
 		let m = 0;
 		for (let i = 1; i < n; i++) {
