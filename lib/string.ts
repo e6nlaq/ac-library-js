@@ -1,3 +1,5 @@
+import { isInt32Array } from "node:util/types";
+
 export namespace internal {
 	export function sa_naive(s: Int32Array): Int32Array {
 		const n = s.length;
@@ -172,3 +174,64 @@ export namespace internal {
 		return sa;
 	}
 } // namespace internal
+
+export function suffix_array(s: string): Int32Array; // (1)
+export function suffix_array<T>(s: T[]): Int32Array; // (2)
+
+// (3)
+export function suffix_array(
+	s: Int32Array | number[],
+	upper: number
+): Int32Array;
+
+export function suffix_array<T>(
+	s: string | T[] | Int32Array | number[],
+	upper?: number
+): Int32Array {
+	if (upper !== undefined) {
+		// (3)
+		if (!isInt32Array(s)) {
+			s = new Int32Array(s as number[]);
+		}
+
+		if (upper < 0) {
+			throw new RangeError("uppper must be non negative");
+		}
+		for (const d of s) {
+			if (!(0 <= d && d <= upper)) {
+				throw new RangeError("s[i] must be 0<=s[i]<=upper");
+			}
+		}
+		const sa = internal.sa_is(s, upper);
+		return sa;
+	}
+
+	if (isInt32Array(s)) {
+		throw new RangeError("upper is requied if s is `Int32Array`");
+	}
+
+	if (typeof s === "string") {
+		// (1)
+		const n = s.length;
+		const s2 = new Int32Array(n);
+		for (let i = 0; i < n; i++) {
+			s2[i] = s.charCodeAt(i);
+		}
+		return internal.sa_is(s2, 255);
+	}
+
+	// (2)
+	s = s as T[];
+	const n = s.length;
+	const idx = Int32Array.from({ length: n }, (_, i) => i);
+
+	idx.sort((l, r) => (s[l] < s[r] ? -1 : s[l] === s[r] ? 0 : 1));
+	const s2 = new Int32Array(n);
+
+	let now = 0;
+	for (let i = 0; i < n; i++) {
+		if (i && s[idx[i - 1]] !== s[idx[i]]) now++;
+		s2[idx[i]] = now;
+	}
+	return internal.sa_is(s2, now);
+}
