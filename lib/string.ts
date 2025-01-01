@@ -192,7 +192,7 @@ export function suffix_array<T>(
 		}
 
 		if (upper < 0) {
-			throw new RangeError("uppper must be non negative");
+			throw new RangeError("upper must be 0<=upper");
 		}
 		for (const d of s) {
 			if (!(0 <= d && d <= upper)) {
