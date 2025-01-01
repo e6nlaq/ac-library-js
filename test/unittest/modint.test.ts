@@ -141,11 +141,11 @@ describe("ModIntTest", () => {
 		expect(mint(4).val()).toEqual(4);
 		expect(mint(4).minus().val()).toEqual(7);
 
-		expect(mint(1).eq(mint(3))).toBeFalsy();
-		expect(mint(1).nq(mint(3))).toBeTruthy();
+		expect(mint(1).eq(mint(3))).toBeFalse();
+		expect(mint(1).nq(mint(3))).toBeTrue();
 
-		expect(mint(1).eq(mint(12))).toBeTruthy();
-		expect(mint(1).nq(mint(12))).toBeFalsy();
+		expect(mint(1).eq(mint(12))).toBeTrue();
+		expect(mint(1).nq(mint(12))).toBeFalse();
 
 		expect(() => mint(3).pow(-1)).toThrow();
 	});

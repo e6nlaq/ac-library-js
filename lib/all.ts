@@ -1,4 +1,5 @@
 export * from "./dsu";
+export * from "./fenwicktree";
 export * from "./math";
 export * from "./modint";
 export * from "./scc";

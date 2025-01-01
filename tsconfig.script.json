@@ -18,10 +18,9 @@
 		"noUnusedParameters": false,
 		"noPropertyAccessFromIndexSignature": false,
 
-		"declaration": true,
-
-		"outDir": "./dist/"
+		"resolveJsonModule": true,
+		"esModuleInterop": true
 	},
 
-	"include": ["./lib/**/*.ts", "./test/**/*"]
+	"include": ["./script/**/*.ts"]
 }

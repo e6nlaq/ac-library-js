@@ -6,8 +6,8 @@ import {
 	primitive_root_constexpr,
 	safe_mod,
 } from "@/internal_math";
+import { max_ll, min_ll } from "../utils/limit";
 import { is_primitive_root } from "../utils/math";
-import { min_ll, max_ll } from "../utils/limit";
 
 function gcd(a: bigint, b: bigint): bigint {
 	if (a < 0n || b < 0n) throw new RangeError();
@@ -66,11 +66,11 @@ describe("InternalMathTest", () => {
 	});
 
 	test("IsPrime", () => {
-		expect(is_prime_constexpr(121)).toBeFalsy();
-		expect(is_prime_constexpr(11 * 13)).toBeFalsy();
-		expect(is_prime_constexpr(1000000007)).toBeTruthy();
-		expect(is_prime_constexpr(1000000008)).toBeFalsy();
-		expect(is_prime_constexpr(1000000009)).toBeTruthy();
+		expect(is_prime_constexpr(121)).toBeFalse();
+		expect(is_prime_constexpr(11 * 13)).toBeFalse();
+		expect(is_prime_constexpr(1000000007)).toBeTrue();
+		expect(is_prime_constexpr(1000000008)).toBeFalse();
+		expect(is_prime_constexpr(1000000009)).toBeTrue();
 
 		for (let i = 0; i <= 10000; i++) {
 			expect(is_prime_constexpr(i)).toEqual(is_prime_naive(i));
@@ -161,7 +161,7 @@ describe("InternalMathTest", () => {
 		for (let i = 0; i < 1000; i++) {
 			const x = 2 ** 31 - i;
 			if (!is_prime_constexpr(x)) continue;
-			expect(is_primitive_root(x, primitive_root_constexpr(x))).toBeTruthy();
+			expect(is_primitive_root(x, primitive_root_constexpr(x))).toBeTrue();
 		}
 	});
 });

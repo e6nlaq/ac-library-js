@@ -1,31 +1,40 @@
 {
-  "name": "ac-library-js",
-  "description": "AC Library for JavaScript",
-  "version": "0.0.1",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/e6nlaq/ac-library-js"
-  },
-  "author": {
-    "name": "e6nlaq"
-  },
-  "license": "CC0-1.0",
-  "exports": {
-    ".": "./dist/all.js",
-    "./*": "./dist/*.js"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@faker-js/faker": "^9.3.0",
-    "@types/bun": "^1.1.14"
-  },
-  "peerDependencies": {
-    "typescript": "^5.6.3"
-  },
-  "scripts": {
-    "build": "tsc -p ./tsconfig.build.json",
-    "format": "biome format --write ./lib",
-    "check": "biome check ./lib",
-    "prepublishOnly": "bun run format && bun run build && bun test"
-  }
+	"name": "ac-library-js",
+	"description": "AC Library for JavaScript",
+	"version": "0.0.2",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/e6nlaq/ac-library-js"
+	},
+	"author": {
+		"name": "e6nlaq"
+	},
+	"license": "CC0-1.0",
+	"exports": {
+		".": "./dist/all.js",
+		"./*": "./dist/*.js"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@faker-js/faker": "^9.3.0",
+		"@types/bun": "^1.1.14"
+	},
+	"peerDependencies": {
+		"typescript": "^5.6.3"
+	},
+	"scripts": {
+		"build": "tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.script.json",
+		"format": "biome format --write ./lib",
+		"check": "biome check ./lib",
+		"fix": "biome check --fix",
+		"prepublishOnly": "bun run format && bun run build && bun test"
+	},
+	"dependencies": {
+		"@commander-js/extra-typings": "13.0.0",
+		"commander": "13.0.0",
+		"esbuild": "0.24.2"
+	},
+	"bin": {
+		"expander": "./script/expander.js"
+	}
 }

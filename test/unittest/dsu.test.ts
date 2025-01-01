@@ -19,13 +19,13 @@ describe("DSUTest", () => {
 
 	test("Simple", () => {
 		const uf = new DSU(2);
-		expect(uf.same(0, 1)).toBeFalsy();
+		expect(uf.same(0, 1)).toBeFalse();
 
 		const x = uf.merge(0, 1);
 		expect(uf.leader(0)).toEqual(x);
 		expect(uf.leader(1)).toEqual(x);
 
-		expect(uf.same(0, 1)).toBeTruthy();
+		expect(uf.same(0, 1)).toBeTrue();
 		expect(uf.size(0)).toEqual(2);
 	});
 

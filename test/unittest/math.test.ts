@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { ok } from "node:assert";
 import { safe_mod } from "@/internal_math";
 import { crt, floor_sum, inv_mod, pow_mod } from "@/math";
-import { ok } from "node:assert";
 import { max_ll, min_ll } from "../utils/limit";
 
 function gcd(a: bigint, b: bigint): bigint {
@@ -96,7 +96,7 @@ describe("MathTest", () => {
 						const res = crt([c, d], [a, b]);
 						if (res[1] === 0n) {
 							for (let x = 0n; x < (a * b) / gcd(a, b); x++) {
-								expect(x % a !== c || x % b !== d).toBeTruthy();
+								expect(x % a !== c || x % b !== d).toBeTrue();
 							}
 							continue;
 						}
@@ -123,7 +123,7 @@ describe("MathTest", () => {
 									for (let x = 0n; x < lcm; x++) {
 										expect(
 											x % a !== d || x % b !== e || x % c !== f
-										).toBeTruthy();
+										).toBeTrue();
 									}
 									continue;
 								}

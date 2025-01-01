@@ -5,11 +5,11 @@ import { randbool, randint } from "../utils/random";
 describe("TwosatTest", () => {
 	test("Empty", () => {
 		const ts0 = new TwoSat();
-		expect(ts0.satisfiable()).toBeTruthy();
+		expect(ts0.satisfiable()).toBeTrue();
 		expect(ts0.answer()).toEqual([]);
 
 		const ts1 = new TwoSat(0);
-		expect(ts1.satisfiable()).toBeTruthy();
+		expect(ts1.satisfiable()).toBeTrue();
 		expect(ts1.answer()).toEqual([]);
 	});
 
@@ -18,18 +18,18 @@ describe("TwosatTest", () => {
 			const ts = new TwoSat(1);
 			ts.add_clause(0, true, 0, true);
 			ts.add_clause(0, false, 0, false);
-			expect(ts.satisfiable()).toBeFalsy();
+			expect(ts.satisfiable()).toBeFalse();
 		}
 		{
 			const ts = new TwoSat(1);
 			ts.add_clause(0, true, 0, true);
-			expect(ts.satisfiable()).toBeTruthy();
+			expect(ts.satisfiable()).toBeTrue();
 			expect(ts.answer()).toEqual([true]);
 		}
 		{
 			const ts = new TwoSat(1);
 			ts.add_clause(0, false, 0, false);
-			expect(ts.satisfiable()).toBeTruthy();
+			expect(ts.satisfiable()).toBeTrue();
 			expect(ts.answer()).toEqual([false]);
 		}
 	});
@@ -68,18 +68,18 @@ describe("TwosatTest", () => {
 					ts.add_clause(x, exp[x], y, !exp[y]);
 				}
 			}
-			expect(ts.satisfiable()).toBeTruthy();
+			expect(ts.satisfiable()).toBeTrue();
 			const actual = ts.answer();
 			for (let i = 0; i < m; i++) {
 				const x = xs[i];
 				const y = ys[i];
 				const type = types[i];
 				if (type === 0) {
-					expect(actual[x] === exp[x] || actual[y] === exp[y]).toBeTruthy();
+					expect(actual[x] === exp[x] || actual[y] === exp[y]).toBeTrue();
 				} else if (type === 1) {
-					expect(actual[x] !== exp[x] || actual[y] === exp[y]).toBeTruthy();
+					expect(actual[x] !== exp[x] || actual[y] === exp[y]).toBeTrue();
 				} else {
-					expect(actual[x] === exp[x] || actual[y] !== exp[y]).toBeTruthy();
+					expect(actual[x] === exp[x] || actual[y] !== exp[y]).toBeTrue();
 				}
 			}
 		}
