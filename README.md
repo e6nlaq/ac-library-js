@@ -5,6 +5,7 @@
 [AC Library](https://github.com/atcoder/ac-library/) for JavaScript(TypeScript)
 
 - [Repository](https://github.com/e6nlaq/ac-library-js)
+- [Document](https://github.com/e6nlaq/ac-library-js/wiki)
 
 
 ## Get Started
