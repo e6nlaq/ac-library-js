@@ -21,7 +21,7 @@ export namespace internal {
 		const n = s.length;
 		const sa = Int32Array.from({ length: n }, (_, i) => i);
 		let rnk = new Int32Array(n);
-		rnk.set(sa);
+		rnk.set(s);
 		let tmp = new Int32Array(n);
 
 		for (let k = 1; k < n; k *= 2) {
