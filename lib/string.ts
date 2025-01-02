@@ -89,12 +89,12 @@ export namespace internal {
 		const induce = (lms: Int32Array) => {
 			sa.fill(-1);
 			const buf = new Int32Array(upper + 1);
-			sum_s.set(buf);
+			buf.set(sum_s);
 			for (const d of lms) {
 				if (d === n) continue;
 				sa[buf[s[d]]++] = d;
 			}
-			sum_l.set(buf);
+			buf.set(sum_l);
 			sa[buf[s[n - 1]]++] = n - 1;
 			for (let i = 0; i < n; i++) {
 				const v = sa[i];
@@ -102,7 +102,7 @@ export namespace internal {
 					sa[buf[s[v - 1]]++] = v - 1;
 				}
 			}
-			sum_l.set(buf);
+			buf.set(sum_l);
 			for (let i = n - 1; i >= 0; i--) {
 				const v = sa[i];
 				if (v >= 1 && ls[v - 1]) {
