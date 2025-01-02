@@ -7,12 +7,8 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"include": [
-			"./lib/**/*.ts",
-			"./script/**/*.ts",
-			"./test/**/*.ts",
-			"./example/**/*.ts"
-		]
+		"include": ["./lib/*.ts", "./script/*.ts", "./test/*.ts", "./example/*.ts"],
+		"ignore": ["lib.*.d.ts"]
 	},
 	"formatter": {
 		"enabled": true,

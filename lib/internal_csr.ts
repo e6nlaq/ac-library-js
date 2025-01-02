@@ -1,5 +1,5 @@
 export class CSR<E> {
-	readonly start: Int32Array;
+	readonly start: Int32Array<ArrayBuffer>;
 	readonly elist: E[];
 
 	constructor(n: number, edges: [number, E][]) {

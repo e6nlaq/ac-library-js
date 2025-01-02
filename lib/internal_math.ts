@@ -7,12 +7,12 @@ export function safe_mod(x: bigint, m: bigint): bigint {
 export class Barrett {
 	private readonly _m: number;
 
-	private readonly im: bigint;
+	// private readonly im: bigint;
 
 	constructor(m: number) {
 		if (m <= 0) throw new Error("m must be positive");
 		this._m = m;
-		this.im = (2n ** 64n - 1n) / BigInt(m) + 1n;
+		// this.im = (2n ** 64n - 1n) / BigInt(m) + 1n;
 	}
 
 	umod(): number {
