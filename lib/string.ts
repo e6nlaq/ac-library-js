@@ -289,9 +289,8 @@ export function z_algorithm(s: string | vnum) {
 	const z = new Int32Array(n);
 	z[0] = 0;
 	for (let i = 1, j = 0; i < n; i++) {
-		let k = z[i];
-		k = j + z[j] <= i ? 0 : Math.min(j + z[j] - i, z[i - j]);
-		while (i + k < n && s[k] === s[i + k]) k++;
+		z[i] = j + z[j] <= i ? 0 : Math.min(j + z[j] - i, z[i - j]);
+		while (i + z[i] < n && s[z[i]] === s[i + z[i]]) z[i]++;
 		if (j + z[j] < i + z[i]) j = i;
 	}
 	z[0] = n;
