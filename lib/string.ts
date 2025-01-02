@@ -1,5 +1,5 @@
 import { isInt32Array } from "node:util/types";
-import type { vi } from "./internal_types";
+import { to_array, type vi, type vnum } from "./internal_types";
 
 export namespace internal {
 	export function sa_naive(s: Int32Array) {
@@ -176,12 +176,12 @@ export namespace internal {
 } // namespace internal
 
 export function suffix_array(s: string): Int32Array<ArrayBuffer>; // (1)
-export function suffix_array<T>(s: T[]): Int32Array<ArrayBuffer>; // (2)
+export function suffix_array(s: vnum): Int32Array<ArrayBuffer>; // (2)
 
 // (3)
 export function suffix_array(s: vi, upper: number): Int32Array<ArrayBuffer>;
 
-export function suffix_array<T>(s: string | T[] | vi, upper?: number) {
+export function suffix_array(s: string | vnum, upper?: number) {
 	if (upper !== undefined) {
 		// (3)
 		if (!isInt32Array(s)) {
@@ -200,10 +200,6 @@ export function suffix_array<T>(s: string | T[] | vi, upper?: number) {
 		return sa;
 	}
 
-	if (isInt32Array(s)) {
-		throw new RangeError("upper is requied if s is `Int32Array`");
-	}
-
 	if (typeof s === "string") {
 		// (1)
 		const n = s.length;
@@ -215,7 +211,7 @@ export function suffix_array<T>(s: string | T[] | vi, upper?: number) {
 	}
 
 	// (2)
-	s = s as T[];
+	s = to_array(s);
 	const n = s.length;
 	const idx = Int32Array.from({ length: n }, (_, i) => i);
 
@@ -230,15 +226,16 @@ export function suffix_array<T>(s: string | T[] | vi, upper?: number) {
 	return internal.sa_is(s2, now);
 }
 
-export function lcp_array(s: string, sa: vi): Int32Array<ArrayBuffer>; //(1)
-export function lcp_array<T>(s: T[], sa: vi): Int32Array<ArrayBuffer>; //(2)
+export function lcp_array(s: string, sa: vi): Int32Array<ArrayBuffer>; // (1)
+export function lcp_array(s: vnum, sa: vi): Int32Array<ArrayBuffer>; // (2)
 
-export function lcp_array<T>(s: string | T[], sa: vi) {
+export function lcp_array(s: string | vnum, sa: vi) {
 	if (!isInt32Array(sa)) {
 		sa = new Int32Array(sa);
 	}
 
 	if (typeof s === "string") {
+		// (1)
 		const n = s.length;
 		const s2 = new Array<number>(n);
 		for (let i = 0; i < n; i++) {
@@ -247,6 +244,8 @@ export function lcp_array<T>(s: string | T[], sa: vi) {
 		return lcp_array(s2, sa);
 	}
 
+	// (2)
+	s = to_array(s);
 	const n = s.length;
 	if (n < 1) {
 		throw new RangeError("n must be 1<=n");
@@ -269,10 +268,10 @@ export function lcp_array<T>(s: string | T[], sa: vi) {
 	return lcp;
 }
 
-export function z_algorithm(s: string): Int32Array<ArrayBuffer>; //(1)
-export function z_algorithm<T>(s: T[]): Int32Array<ArrayBuffer>; //(2)
+export function z_algorithm(s: string): Int32Array<ArrayBuffer>; // (1)
+export function z_algorithm(s: vnum): Int32Array<ArrayBuffer>; // (2)
 
-export function z_algorithm<T>(s: string | T[]) {
+export function z_algorithm(s: string | vnum) {
 	if (typeof s === "string") {
 		// (1)
 		const n = s.length;
@@ -284,6 +283,7 @@ export function z_algorithm<T>(s: string | T[]) {
 	}
 
 	// (2)
+	s = to_array(s);
 	const n = s.length;
 	if (n === 0) return new Int32Array();
 	const z = new Int32Array(n);
