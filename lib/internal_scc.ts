@@ -20,7 +20,7 @@ export class InternalSCCGraph {
 	}
 
 	// Returns [number of SCCs, SCC ids]
-	scc_ids(): [number, Int32Array] {
+	scc_ids(): [number, Int32Array<ArrayBuffer>] {
 		const g = new CSR<Edge>(this._n, this.edges);
 		let now_ord = 0;
 		let group_num = 0;

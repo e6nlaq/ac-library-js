@@ -1,6 +1,6 @@
 export class DSU {
 	private _n: number;
-	private parent_or_size: Int32Array;
+	private parent_or_size: Int32Array<ArrayBuffer>;
 
 	constructor(n = 0) {
 		this._n = n;
