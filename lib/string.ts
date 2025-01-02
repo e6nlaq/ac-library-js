@@ -2,7 +2,7 @@ import { isInt32Array } from "node:util/types";
 import type { vi } from "./internal_types";
 
 export namespace internal {
-	export function sa_naive(s: Int32Array): Int32Array {
+	export function sa_naive(s: Int32Array) {
 		const n = s.length;
 		const sa = Int32Array.from({ length: n }, (_, i) => i);
 		sa.sort((l, r) => {
@@ -17,7 +17,7 @@ export namespace internal {
 		return sa;
 	}
 
-	export function sa_doubling(s: Int32Array): Int32Array {
+	export function sa_doubling(s: Int32Array) {
 		const n = s.length;
 		const sa = Int32Array.from({ length: n }, (_, i) => i);
 		let rnk = new Int32Array(n);
@@ -50,7 +50,7 @@ export namespace internal {
 		upper: number,
 		THRESHOLD_NAIVE = 10,
 		THRESHOLD_DOUBLING = 40
-	): Int32Array {
+	) {
 		const n = s.length;
 		if (n === 0) return new Int32Array();
 		if (n === 1) return new Int32Array([0]);
@@ -175,16 +175,13 @@ export namespace internal {
 	}
 } // namespace internal
 
-export function suffix_array(s: string): Int32Array; // (1)
-export function suffix_array<T>(s: T[]): Int32Array; // (2)
+export function suffix_array(s: string): Int32Array<ArrayBuffer>; // (1)
+export function suffix_array<T>(s: T[]): Int32Array<ArrayBuffer>; // (2)
 
 // (3)
-export function suffix_array(s: vi, upper: number): Int32Array;
+export function suffix_array(s: vi, upper: number): Int32Array<ArrayBuffer>;
 
-export function suffix_array<T>(
-	s: string | T[] | vi,
-	upper?: number
-): Int32Array {
+export function suffix_array<T>(s: string | T[] | vi, upper?: number) {
 	if (upper !== undefined) {
 		// (3)
 		if (!isInt32Array(s)) {
@@ -233,10 +230,10 @@ export function suffix_array<T>(
 	return internal.sa_is(s2, now);
 }
 
-export function lcp_array(s: string, sa: vi): Int32Array; //(1)
-export function lcp_array<T>(s: T[], sa: vi): Int32Array; //(2)
+export function lcp_array(s: string, sa: vi): Int32Array<ArrayBuffer>; //(1)
+export function lcp_array<T>(s: T[], sa: vi): Int32Array<ArrayBuffer>; //(2)
 
-export function lcp_array<T>(s: string | T[], sa: vi): Int32Array {
+export function lcp_array<T>(s: string | T[], sa: vi) {
 	if (!isInt32Array(sa)) {
 		sa = new Int32Array(sa);
 	}
@@ -272,10 +269,10 @@ export function lcp_array<T>(s: string | T[], sa: vi): Int32Array {
 	return lcp;
 }
 
-export function z_algorithm(s: string): Int32Array; //(1)
-export function z_algorithm<T>(s: T[]): Int32Array; //(2)
+export function z_algorithm(s: string): Int32Array<ArrayBuffer>; //(1)
+export function z_algorithm<T>(s: T[]): Int32Array<ArrayBuffer>; //(2)
 
-export function z_algorithm<T>(s: string | T[]): Int32Array {
+export function z_algorithm<T>(s: string | T[]) {
 	if (typeof s === "string") {
 		// (1)
 		const n = s.length;
