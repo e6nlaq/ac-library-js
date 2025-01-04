@@ -1,7 +1,7 @@
 // Verified: https://atcoder.jp/contests/practice2/submissions/61317841
 
-import { suffix_array, lcp_array } from 'ac-library-js/string';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from "node:fs";
+import { lcp_array, suffix_array } from "ac-library-js/string";
 
 function main(inp: string[][]): void {
 	const S = inp[0][0];
@@ -13,7 +13,7 @@ function main(inp: string[][]): void {
 }
 
 main(
-	readFileSync('/dev/stdin', 'utf-8')
-		.split('\n')
-		.map(line => line.split(' ')),
+	readFileSync("/dev/stdin", "utf-8")
+		.split("\n")
+		.map((line) => line.split(" "))
 );

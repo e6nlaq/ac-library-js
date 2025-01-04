@@ -1,7 +1,7 @@
 // Verified: https://atcoder.jp/contests/practice2/submissions/61317841
 
-import { SCCGraph } from 'ac-library-js/scc';
-import { readFileSync } from 'node:fs';
+import { readFileSync } from "node:fs";
+import { SCCGraph } from "ac-library-js/scc";
 
 function main(inp: string[][]): void {
 	const [N, M] = inp[0].map(Number);
@@ -14,11 +14,12 @@ function main(inp: string[][]): void {
 
 	const ans = G.scc();
 	console.log(ans.length);
-	for (let i = 0; i < ans.length; i++) console.log(`${ans[i].length} ${ans[i].join(' ')}`);
+	for (let i = 0; i < ans.length; i++)
+		console.log(`${ans[i].length} ${ans[i].join(" ")}`);
 }
 
 main(
-	readFileSync('/dev/stdin', 'utf-8')
-		.split('\n')
-		.map(line => line.split(' ')),
+	readFileSync("/dev/stdin", "utf-8")
+		.split("\n")
+		.map((line) => line.split(" "))
 );

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { FenwickTree } from "@/fenwicktree";
 import { modint, modint998244353 } from "@/modint";
-import { max_int, min_int, max_ll, min_ll } from "../utils/limit";
+import { max_int, max_ll, min_int, min_ll } from "../utils/limit";
 
 describe("FenwickTreeTest", () => {
 	test("Empty", () => {

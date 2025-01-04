@@ -1,14 +1,14 @@
+import { describe, expect, test } from "bun:test";
 import { ok } from "node:assert";
-import { describe, test, expect } from "bun:test";
-import { suffix_array, z_algorithm, lcp_array, internal } from "@/string";
+import { internal, lcp_array, suffix_array, z_algorithm } from "@/string";
 import {
 	max_int,
-	min_int,
 	max_ll,
-	min_ll,
 	max_uint,
-	min_uint,
 	max_ull,
+	min_int,
+	min_ll,
+	min_uint,
 	min_ull,
 } from "../utils/limit";
 
