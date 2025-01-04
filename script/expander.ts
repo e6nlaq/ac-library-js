@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { statSync } from "node:fs";
-import * as esbuild from "esbuild";
 import { exit } from "node:process";
 import { Command } from "@commander-js/extra-typings";
+import * as esbuild from "esbuild";
 import packageJson from "../package.json";
 
 function checkFile(filePath: string) {
