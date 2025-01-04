@@ -1,5 +1,6 @@
 export * from "./dsu";
 export * from "./fenwicktree";
+export * from "./lazysegtree";
 export * from "./math";
 export * from "./modint";
 export * from "./scc";

@@ -1,11 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import { ok } from "node:assert";
-import {
-	type ElementType,
-	type OperatorType,
-	type SearchFunction,
-	Segtree,
-} from "@/segtree";
+import type {
+	ElementType,
+	OperatorType,
+	SearchFunction,
+} from "@/internal_types";
+import { Segtree } from "@/segtree";
 
 class SegtreeNaive<S extends string> {
 	private n: number;

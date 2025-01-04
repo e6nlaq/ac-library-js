@@ -147,7 +147,7 @@ describe("ModIntTest", () => {
 		expect(mint(1).eq(mint(12))).toBeTrue();
 		expect(mint(1).nq(mint(12))).toBeFalse();
 
-		expect(() => mint(3).pow(-1)).toThrow();
+		expect(() => mint(3).pow(-1)).toThrowError();
 	});
 
 	test("Constructor", () => {
