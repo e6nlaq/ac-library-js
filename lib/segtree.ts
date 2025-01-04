@@ -1,7 +1,7 @@
 import { bit_ceil, countr_zero } from "./internal_bit";
 import type {
-	OperatorType,
 	ElementType,
+	OperatorType,
 	SearchFunction,
 } from "./internal_types";
 export class Segtree<S> {
