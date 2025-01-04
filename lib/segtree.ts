@@ -1,12 +1,12 @@
 import { bit_ceil, countr_zero } from "./internal_bit";
-
-export type OperatorType<S> = (a: S, b: S) => S;
-export type ElementType<S> = () => S;
-export type SearchFunction<S> = (x: S) => boolean;
-
+import type {
+	OperatorType,
+	ElementType,
+	SearchFunction,
+} from "./internal_types";
 export class Segtree<S> {
-	private op: (a: S, b: S) => S;
-	private e: () => S;
+	private op: OperatorType<S>;
+	private e: ElementType<S>;
 
 	private _n: number;
 	private size: number;
