@@ -3,6 +3,8 @@ import type {
 	ElementType,
 	OperatorType,
 	SearchFunction,
+	typevi,
+	typevll,
 } from "./internal_types";
 export class Segtree<S> {
 	private op: OperatorType<S>;
@@ -23,16 +25,20 @@ export class Segtree<S> {
 		}
 	}
 
-	constructor(op: OperatorType<S>, e: ElementType<S>, x: number | S[] = 0) {
+	constructor(
+		op: OperatorType<S>,
+		e: ElementType<S>,
+		v:
+			| number
+			| S[]
+			| (S extends number ? typevi : never)
+			| (S extends bigint ? typevll : never) = 0
+	) {
 		this.op = op;
 		this.e = e;
 
-		let v: Array<S>;
-		if (typeof x === "number") {
-			v = new Array<S>(x).fill(this.e());
-			for (let i = 0; i < x; i++) v[i] = this.e();
-		} else {
-			v = x;
+		if (typeof v === "number") {
+			v = new Array<S>(v).fill(null as S).map(e);
 		}
 
 		this._n = v.length;
@@ -42,7 +48,7 @@ export class Segtree<S> {
 		for (let i = 0; i < this.d.length; i++) this.d[i] = this.e();
 
 		for (let i = 0; i < this._n; i++) {
-			this.d[this.size + i] = v[i];
+			this.d[this.size + i] = v[i] as S;
 		}
 
 		for (let i = this.size - 1; i >= 1; i--) {
