@@ -6,6 +6,8 @@ import type {
 	MappingType,
 	OperatorType,
 	SearchFunction,
+	typevi,
+	typevll,
 } from "./internal_types";
 
 export class LazySegtree<S, F> {
@@ -42,7 +44,11 @@ export class LazySegtree<S, F> {
 		mapping: MappingType<S, F>,
 		composition: CompositionType<F>,
 		id: IdType<F>,
-		x: number | S[] = 0
+		x:
+			| number
+			| S[]
+			| (S extends number ? typevi : never)
+			| (S extends bigint ? typevll : never) = 0
 	) {
 		this.op = op;
 		this.e = e;
@@ -58,7 +64,7 @@ export class LazySegtree<S, F> {
 		this.log = countr_zero(this.size);
 		this.d = new Array<S>(2 * this.size).fill(null as S).map(() => e());
 		this.lz = new Array<F>(this.size).fill(null as F).map(() => id());
-		for (let i = 0; i < this._n; i++) this.d[this.size + i] = x[i];
+		for (let i = 0; i < this._n; i++) this.d[this.size + i] = x[i] as S;
 		for (let i = this.size - 1; i >= 1; i--) {
 			this.update(i);
 		}

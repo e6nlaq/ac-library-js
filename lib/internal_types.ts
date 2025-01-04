@@ -4,18 +4,16 @@ import { isBigInt64Array, isBigUint64Array } from "node:util/types";
 export type ll = bigint | number;
 export type vll = BigInt64Array | bigint[];
 export type vi = Int32Array | number[];
-export type vnum =
-	| number[]
-	| bigint[]
+export type typevi =
 	| Int8Array
 	| Int16Array
 	| Int32Array
-	| BigInt64Array
 	| Uint8Array
 	| Uint8ClampedArray
 	| Uint16Array
-	| Uint32Array
-	| BigInt64Array;
+	| Uint32Array;
+export type typevll = BigInt64Array | BigUint64Array;
+export type vnum = number[] | bigint[] | typevi | typevll;
 
 export function to_array(v: vnum): number[] | bigint[] {
 	if (Array.isArray(v)) {
