@@ -169,4 +169,12 @@ describe("SegtreeTest", () => {
 		let seg0 = new Segtree<string>(op, e);
 		seg0 = seg(10);
 	});
+
+	test("Int32Array", () => {
+		const seg0 = new Segtree<number>(
+			(a, b) => a + b,
+			() => 0,
+			new Int32Array(10)
+		);
+	});
 });
