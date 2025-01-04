@@ -23,7 +23,7 @@ export function randpair(
 	upper: number | bigint
 ): [number | bigint, number | bigint] {
 	if (typeof lower === "number" && typeof upper === "number") {
-		ok(lower - upper >= 1);
+		ok(upper - lower >= 1);
 
 		let a: number;
 		let b: number;
@@ -36,7 +36,7 @@ export function randpair(
 		return [a, b];
 	}
 	if (typeof lower === "bigint" && typeof upper === "bigint") {
-		ok(lower - upper >= 1n);
+		ok(upper - lower >= 1n);
 		let a: bigint;
 		let b: bigint;
 		do {
