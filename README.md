@@ -1,7 +1,5 @@
 # ac-library-js
 
-# このプロジェクトは作成中であり、名前予約のために公開されています。
-
 [AC Library](https://github.com/atcoder/ac-library/) for JavaScript(TypeScript)
 
 - [Repository](https://github.com/e6nlaq/ac-library-js)
