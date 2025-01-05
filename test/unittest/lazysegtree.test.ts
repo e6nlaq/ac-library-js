@@ -1,5 +1,5 @@
+import { describe, expect, test } from "bun:test";
 import { LazySegtree } from "@/lazysegtree";
-import { describe, test, expect } from "bun:test";
 
 const starry = {
 	op_ss: (a: number, b: number) => Math.max(a, b),

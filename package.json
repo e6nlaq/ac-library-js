@@ -1,7 +1,7 @@
 {
 	"name": "ac-library-js",
 	"description": "AC Library for JavaScript",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/e6nlaq/ac-library-js"
@@ -16,11 +16,11 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@faker-js/faker": "^9.3.0",
-		"@types/bun": "^1.1.14",
-		"@types/node": "^22.10.3",
-		"rimraf": "^6.0.1",
-		"typescript": "^5.7.2"
+		"@faker-js/faker": "9.3.0",
+		"@types/bun": "1.1.14",
+		"@types/node": "22.10.3",
+		"rimraf": "6.0.1",
+		"typescript": "5.7.2"
 	},
 	"scripts": {
 		"build": "rimraf ./dist && tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.script.json",

@@ -8,4 +8,5 @@ vitest.config.ts
 index.ts
 script/expander.ts
 tsconfig.*.json
+tsconfig.json
 .github/

@@ -1,6 +1,6 @@
-import { LazySegtree } from "@/lazysegtree";
-import { describe, test, expect } from "bun:test";
+import { describe, expect, test } from "bun:test";
 import { ok } from "node:assert";
+import { LazySegtree } from "@/lazysegtree";
 import { randint, randpair } from "../utils/random";
 
 class time_manager {
