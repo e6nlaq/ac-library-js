@@ -1,4 +1,4 @@
-export class CSR<E> {
+export class Csr<E> {
 	readonly start: Int32Array<ArrayBuffer>;
 	readonly elist: E[];
 

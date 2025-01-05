@@ -1,10 +1,10 @@
-import { InternalSCCGraph } from "./internal_scc";
+import { InternalSccGraph } from "./internal_scc";
 
-export class SCCGraph {
-	private internal: InternalSCCGraph;
+export class SccGraph {
+	private internal: InternalSccGraph;
 
 	constructor(n = 0) {
-		this.internal = new InternalSCCGraph(n);
+		this.internal = new InternalSccGraph(n);
 	}
 
 	add_edge(from: number, to: number): void {

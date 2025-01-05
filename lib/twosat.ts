@@ -1,14 +1,14 @@
-import { InternalSCCGraph } from "./internal_scc";
+import { InternalSccGraph } from "./internal_scc";
 
 export class TwoSat {
 	private _n: number;
 	private _answer: boolean[];
-	private scc: InternalSCCGraph;
+	private scc: InternalSccGraph;
 
 	constructor(n = 0) {
 		this._n = n;
 		this._answer = new Array<boolean>(n);
-		this.scc = new InternalSCCGraph(2 * n);
+		this.scc = new InternalSccGraph(2 * n);
 	}
 
 	add_clause(i: number, f: boolean, j: number, g: boolean): void {
