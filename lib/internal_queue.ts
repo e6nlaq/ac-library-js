@@ -1,4 +1,4 @@
-export class simple_queue<T> {
+export class SimpleQueue<T> {
 	payload: T[] = [];
 	pos = 0;
 

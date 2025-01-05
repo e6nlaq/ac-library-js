@@ -27,6 +27,9 @@ export function to_array(v: vnum): number[] | bigint[] {
 	return [...v];
 }
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+export type Constructor<T> = (arg: any) => T;
+
 // Segtree
 
 export type OperatorType<S> = (a: S, b: S) => S;
