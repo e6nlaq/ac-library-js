@@ -223,3 +223,5 @@ export const modint1000000007 = modint(1000000007);
 export const modint998244353 = modint(998244353);
 
 export type ModIntFunction<M extends number> = (x?: Val<M>) => ModInt<M>;
+export type modint998244353 = ModInt<998244353>;
+export type modint1000000007 = ModInt<1000000007>;
