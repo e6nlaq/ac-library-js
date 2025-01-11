@@ -1,11 +1,11 @@
 // Verified: https://atcoder.jp/contests/practice2/submissions/61317841
 
 import { readFileSync } from "node:fs";
-import { SCCGraph } from "ac-library-js/scc";
+import { SccGraph } from "ac-library-js/scc";
 
 function main(inp: string[][]): void {
 	const [N, M] = inp[0].map(Number);
-	const G = new SCCGraph(N);
+	const G = new SccGraph(N);
 
 	for (let i = 1; i <= M; i++) {
 		const [a, b] = inp[i].map(Number);
