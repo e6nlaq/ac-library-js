@@ -1,4 +1,4 @@
-// Verified: https://atcoder.jp/contests/practice2/submissions/61317841
+// Verified: https://atcoder.jp/contests/practice2/submissions/61318279
 
 import { readFileSync } from "node:fs";
 import { SccGraph } from "ac-library-js/scc";
