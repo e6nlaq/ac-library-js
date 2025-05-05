@@ -1,8 +1,5 @@
 import { ModInt, type ModIntFunction } from "./modint";
-
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export type Constructor<T> = (arg: any) => T;
-
+import type { Constructor } from "./internal_types";
 export class FenwickTree<
 	T extends number | bigint | ModInt<M>,
 	M extends number = number,
